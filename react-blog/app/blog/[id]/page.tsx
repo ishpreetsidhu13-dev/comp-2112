@@ -1,3 +1,4 @@
+import PageTile from "@/app/components/pageTile";
 import { Post } from "@/app/types/post";
 
 export default async function BlogDetail({params}: {params: {id: string}}) {
@@ -10,6 +11,7 @@ export default async function BlogDetail({params}: {params: {id: string}}) {
     
     return (
         <main>
+            <PageTile title={post.title} />
             <h1>{post.title}</h1>
             <h2>{post.author}</h2>
             <p>{post.date}</p>

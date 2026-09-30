@@ -1,5 +1,6 @@
 'use client';
 import { ChangeEvent, useState } from 'react';
+import PageTile from '../components/pageTile';
 export default function Contact() {
    const [name, setName] = useState<string>("");
     const [message, setMessage] = useState<string>("");
@@ -17,7 +18,9 @@ export default function Contact() {
       setConfirmation(`Your name: ${name} - Your message: ${message}`);
    }
     return (
+
         <main>
+            <PageTile title="Contact" />
             <h1>Contact Us</h1>
             <input type="text" placeholder="Name" value={name} onChange={handleChange} />
             <input type="text" placeholder="message" value={message} onChange={handleMessageChange} />
