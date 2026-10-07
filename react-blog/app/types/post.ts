@@ -1,9 +1,9 @@
 // post data type for blog data
 export interface Post {
-    id: number;
+    _id: number;
     title: string;
     author: string;
     date: string;
     content: string;
-    categories: string;
+    category: string;
 }

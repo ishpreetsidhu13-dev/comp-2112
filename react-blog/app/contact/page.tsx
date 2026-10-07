@@ -1,34 +1,23 @@
 'use client';
-import { ChangeEvent, useState } from 'react';
-import PageTile from '../components/pageTile';
+
+import React, { useState } from "react";
+import PageTitle from "@/app/components/pageTitle";
+
 export default function Contact() {
-   const [name, setName] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
-   const [confirmation, setConfirmation] = useState("");
+    const [name, setName] = useState<string>('');
 
-
-
-   const handleChange:(e:React.ChangeEvent<HTMLInputElement>) => void = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-   }
-    const handleMessageChange: (e: React.ChangeEvent<HTMLInputElement>) => void = (e: ChangeEvent<HTMLInputElement>) => {
-      setMessage(e.target.value);
+    // change event handler for textbox
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>)=> {
+        // update state var with current value of textbox
+        setName(event.target.value);
     }
-    const handleSubmit = () => {
-      setConfirmation(`Your name: ${name} - Your message: ${message}`);
-   }
+
     return (
-
         <main>
-            <PageTile title="Contact" />
+            <PageTitle title="Contact" />
             <h1>Contact Us</h1>
-            <input type="text" placeholder="Name" value={name} onChange={handleChange} />
-            <input type="text" placeholder="message" value={message} onChange={handleMessageChange} />
-            
-            <button onClick={handleSubmit}>Submit</button>
-            
-            <p>{confirmation}</p>
-
+            <input type="text" placeholder="Your Name" value={name} onChange={handleChange} />
+            <p>You typed: {name}</p>
         </main>
     );
 }

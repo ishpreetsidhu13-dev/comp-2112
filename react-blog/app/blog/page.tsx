@@ -1,26 +1,25 @@
 import {Post} from "@/app/types/post";
 import Link from "next/link";
-import PageTile from "../components/pageTile";
+import PageTitle from "@/app/components/pageTitle";
 
 export default async function Blog() {
     // fetch blog data from external api
-    const data: Response = await fetch('https://api.vercel.app/blog');
+    const data: Response = await fetch('https://api-demo-f26.vercel.app/api/v1/posts');
 
     // convert api data to an array of Post objects
     const posts: Post[] = await data.json();
 
     return (
         <main>
-            <PageTile title="Blog" />
+            <PageTitle title="Blog" />
             <h1>Blog</h1>
+            <Link href="/blog/create-post" className="newLink">Create New Blog Post</Link>
             <ul>
                 {posts.map((post) => (
-                    <li key={post.id} className="card">
-                        <Link href={`/blog/${post.id}`}>
+                    <li key={post._id} className="card">
+                        <Link href={`/blog/${post._id}`}>
                             {post.title}
                         </Link>
-                        <p>{post.author}</p>
-                        <p>{post.date}</p>
                     </li>
                 ))}
             </ul>

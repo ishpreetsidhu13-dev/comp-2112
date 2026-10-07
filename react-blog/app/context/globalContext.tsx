@@ -31,3 +31,4 @@ export function useSessionCounter() {
     if (!context) throw new Error("Counter needs a Provider");
     return context;
 }
+

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import PageTitle from "@/app/components/pageTile";
+import PageTitle from "@/app/components/pageTitle";
 import { useSessionCounter } from "@/app/context/globalContext";
 
 export default function Home() {
