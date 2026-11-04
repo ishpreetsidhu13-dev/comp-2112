@@ -64,4 +64,8 @@ After we ran npm audix fix we created an npm compatibility issue.  Fix by changi
 
 ```"eslint": "^8.57.0",``` - downgrade eslint back to original version.  audit updates it to v9, which causes conflicts.
 
+## Lesson 6
 
+```npm i react-simple-wysiwyg --legacy-peer-deps``` - rich text editor for blog post content with backwards compatibility settings to avoid npm version conflicts
+
+```npm i html-to-react``` - to parse HTML tags for formatting of blog post content

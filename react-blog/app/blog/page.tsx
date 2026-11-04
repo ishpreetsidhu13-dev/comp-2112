@@ -2,12 +2,42 @@ import {Post} from "@/app/types/post";
 import Link from "next/link";
 import PageTitle from "@/app/components/pageTitle";
 
-export default async function Blog() {
-    // fetch blog data from external api
-    const data: Response = await fetch('https://api-demo-f26.vercel.app/api/v1/posts');
+const fallbackPosts: Post[] = [
+    {
+        _id: 1,
+        title: "Welcome to the Blog",
+        author: "rfreeman",
+        date: "2026-11-01T00:00:00.000Z",
+        content: "<p>Welcome to the blog. This sample post loads if the remote API is unavailable.</p>",
+        category: "General"
+    },
+    {
+        _id: 2,
+        title: "Getting Started with Next.js",
+        author: "rfreeman",
+        date: "2026-11-02T00:00:00.000Z",
+        content: "<p>Use this app to create and explore blog posts locally when the API is down.</p>",
+        category: "Tutorial"
+    }
+];
 
-    // convert api data to an array of Post objects
-    const posts: Post[] = await data.json();
+export default async function Blog() {
+    const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN ?? "https://comp2112-react-blog-f26.onrender.com";
+    let posts: Post[] = fallbackPosts;
+
+    try {
+        const response = await fetch(`${apiDomain}/posts`, { cache: "no-store" });
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (Array.isArray(data) && data.length > 0) {
+            posts = data;
+        }
+    } catch (error) {
+        console.warn("Falling back to demo blog posts:", error);
+    }
 
     return (
         <main>

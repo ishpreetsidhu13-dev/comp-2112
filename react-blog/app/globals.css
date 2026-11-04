@@ -128,15 +128,15 @@ nav {
   color: #FFFFFF;
 }
 
-input.focus textarea.focus {
+input.focus textarea.focus, .rte.focus {
   box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
 }
 
-textarea {
+textarea, .rte {
   height: 300px;
 }
 
-input, textarea {
+input, textarea, .rte {
   border: #0a0a0a solid 1px;
   width: 750px;
 }
